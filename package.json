@@ -1,0 +1,14 @@
+{
+  "name": "exclamation-mark-english",
+  "version": "0.0.1",
+  "description": "Not English, for programmers",
+  "main": "prompt.js",
+  "keywords": [
+    "language"
+  ],
+  "author": "nanalan & kvackkvack",
+  "license": "WTFPL",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
+}
