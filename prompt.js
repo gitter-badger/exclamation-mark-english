@@ -10,7 +10,11 @@ const parse = require('./parse')
     process.stdout.write(chalk.styles.yellow.close)
 
     let parsed = parse(input)
-    if(parsed) console.log(chalk.styles.blue.open, parsed, chalk.styles.blue.close)
+    if(parsed) {
+      console.log(chalk.styles.blue.open)
+      console.dir(parsed, {depth: null})
+      console.log(chalk.styles.blue.close)
+    }
 
     repl()
   })
