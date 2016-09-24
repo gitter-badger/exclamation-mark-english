@@ -1,13 +1,4 @@
-const chalk = require('chalk')
-
-function error(position, text) {
-  console.error(
-    ' '.repeat(position + 2)
-    + chalk.red('^\n')
-    + chalk.red('SyntaxError: ')
-    + text
-  )
-}
+const err = require('./errors.js')
 
 module.exports = function parse(chars) {
   let flags = {
@@ -44,7 +35,7 @@ module.exports = function parse(chars) {
         tree.sentences.push(this.sentence) // TODO clauses
       } else if(pos == chars.length-1) {
         // programs must finish their sentences!
-        return error(pos, `Expected end of sentence, got "${char}"`)
+        return err.throw(new err.SyntaxError(pos, `Expected end of sentence, got "${char}"`))
       }
 
       this.sentence += char
@@ -54,7 +45,7 @@ module.exports = function parse(chars) {
         flags.is.sentence = true
         this.sentence = char.toLowerCase()
       } else {
-        return error(pos, `Sentences cannot begin with a lowercase character, got "${char}"`)
+        return err.throw(new err.SyntaxError(pos, `Sentences cannot begin with a lowercase character, got "${char}"`))
       }
     }
   }
